@@ -4,7 +4,7 @@ Comal combina una página de recetas con una API Django REST Framework. El proye
 
 ## Requisitos
 
-- Python 3.10 o posterior
+- Python 3.12 o posterior (el proyecto se preparó y ejecuta con Python 3.15)
 - pip
 
 ## Instalación local en Windows
@@ -14,6 +14,7 @@ Desde esta carpeta, abre PowerShell y ejecuta:
 ~~~powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
+$env:PYYAML_FORCE_LIBYAML = "0"
 python -m pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
@@ -46,15 +47,15 @@ Abre la página en http://127.0.0.1:8000/ y Swagger en http://127.0.0.1:8000/api
 ## Evidencias para el PDF
 
 1. Arranca el servidor y toma una captura de /api/docs/ donde se vean los endpoints y el título **Comal | API de cocina**.
-2. En Swagger, usa POST /api/token/ con email y password. Captura la respuesta con access y refresh token. Evita compartir el token fuera de la evidencia de clase.
+2. En Swagger, usa POST /api/token/ con email y password. Captura el codigo HTTP 200 de la respuesta; no publiques los valores de access ni refresh token.
 3. Copia el access token en Authorize como Bearer <token>; ejecuta GET /api/datos-personales/ y captura la respuesta. Debe aparecer phone y no debe aparecer password.
 4. Para demostrar que editar sin contraseña no cambia la contraseña, usa un usuario de práctica:
    - Inicia sesión y captura el access token.
-   - Ejecuta PATCH /api/usuarios/{id}/ enviando solo, por ejemplo, {"phone":"555-0101"}.
+   - Ejecuta PATCH /api/usuarios/{id}/ enviando solo, por ejemplo, {"phone":"555-0102"}.
    - Cierra sesión en Swagger y vuelve a iniciar sesión con la contraseña original en POST /api/token/.
    - Captura el cambio de teléfono y el inicio de sesión exitoso con la contraseña original.
 
-Inserta esas capturas en un documento con el enlace al repositorio de GitHub y expórtalo a PDF. Las capturas deben salir de la ejecución real del proyecto.
+El PDF de evidencias y las capturas están en la carpeta `evidencias/`. Las capturas se obtienen al ejecutar la API local.
 
 ## GitHub
 
