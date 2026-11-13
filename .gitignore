@@ -1,0 +1,20 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Django y base de datos local
+db.sqlite3
+__pycache__/
+*.py[cod]
+*.log
+.env
+staticfiles/
+media/
+
+# Editor y sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
